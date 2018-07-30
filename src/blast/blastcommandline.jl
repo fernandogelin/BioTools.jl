@@ -6,7 +6,7 @@
 # This file is a part of BioJulia.
 # License is MIT: https://github.com/BioJulia/Bio.jl/blob/master/LICENSE.md
 
-immutable BLASTResult
+struct BLASTResult
     bitscore::Float64
     expect::Float64
     queryname::String
@@ -157,7 +157,7 @@ function makefasta(sequence::BioSequence)
 end
 
 # Create temporary multi fasta-formated file for blasting.
-function makefasta{T <: BioSequence}(sequences::Vector{T})
+function makefasta(sequences::Vector{T}) where T <: BioSequence
     path, io = mktemp()
     counter = 1
     for sequence in sequences
